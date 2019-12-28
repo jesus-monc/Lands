@@ -3,22 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Login">
+             Title="Lands">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView 
+            BindingContext="{Binding Login}">
             <StackLayout Padding="10">
-                <Label 
-                    FontSize="Large"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center"
-                    Text="Lands">
-                </Label>
                 <Image
                     Source="onu"
-                    WidthRequest="200">
+                    WidthRequest="180">
                 </Image>
                 <Grid
-                    Margin="0, 20">
+                    Margin="10,0" 
+                    VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
@@ -26,73 +22,93 @@
                     <Label  
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="E-mail">
+                        Text="E-mail"
+                        VerticalOptions="Center">
                     </Label>
                     <Entry               
                         Grid.Row="0"
                         Grid.Column="1"
                         Placeholder="Enter your email"
+                        Text="{Binding Email, Mode=TwoWay}"
                         Keyboard="Email">
                     </Entry>
                     <Label           
                         Grid.Row="1"
                         Grid.Column="0"
-                        Text="Password">
+                        Text="Password"
+                        VerticalOptions="Center">
                     </Label>
                     <Entry             
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Enter your password">
+                        Placeholder="Enter your password"
+                        Text="{Binding Password, Mode=TwoWay}">
                     </Entry>
                 </Grid>
-                <ActivityIndicator>
+                <ActivityIndicator 
+                    VerticalOptions="CenterAndExpand"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
                 </ActivityIndicator>
                 <StackLayout 
-                    Orientation="Horizontal">
+                    Margin="10,0"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
                     <Label 
-                        HorizontalOptions="StartAndExpand"
+                        HorizontalOptions="StartAndExpand"                        
                         Text="Rememberme on this device"
                         VerticalOptions="Center">
                     </Label>
-                    <Switch HorizontalOptions="End">
+                    <Switch
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}">
                     </Switch>
                 </StackLayout>
                 <Label 
                     HorizontalOptions="Center"
                     Text="Forgot your password?"
-                    TextColor="Blue">
+                    TextColor="Blue"
+                    VerticalOptions="CenterAndExpand">
                 </Label>
-                <StackLayout Margin="40,0">
+                <StackLayout 
+                    Margin="20,0"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
                     <Button                        
                         BackgroundColor="Navy"
                         BorderRadius="23"
+                        Command="{Binding LoginCommand}"
                         HeightRequest="46"
-                        TextColor="White"                
-                        Text="Log in">
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                        Text="Log in"
+                        TextColor="White">
                     </Button>
                     <Button
                         BackgroundColor="Purple"
-                        BorderRadius="23"
+                        BorderRadius="23"                        
                         HeightRequest="46"
-                        TextColor="White"                
-                        Text="Register">
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                        Text="Register"
+                        TextColor="White">
                     </Button>
                 </StackLayout>
                 <StackLayout 
                     Orientation="Horizontal"
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand">
                     <Image 
                         Source="facebook"
-                        WidthRequest="100">
+                        WidthRequest="80">
                     </Image>
                     <Image 
                         Source="twitter"
-                        WidthRequest="100">
+                        WidthRequest="80">
                     </Image>
                     <Image 
                         Source="instagram"
-                        WidthRequest="100">
+                        WidthRequest="80">
                     </Image>
                 </StackLayout>
             </StackLayout>
